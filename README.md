@@ -45,14 +45,14 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 export KUBECONFIG=$HOME/.kube/config
 ```
 
-## 4. Download Opni
+## 5. Download Opni
 
 ```bash
 sudo curl -s -o /usr/local/bin/opnictl -fsSL https://github.com/rancher/opni/releases/download/v0.1.2/opnictl_linux-amd64
 sudo chmod +x /usr/local/bin/opnictl
 ```
 
-## 5. Install Opni
+## 6. Install Opni
 
 ```bash
 opnictl install
