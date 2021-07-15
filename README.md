@@ -33,6 +33,18 @@ SSH in to the VM with the following command:
 vagrant ssh
 ```
 
+## 4. Update Kube Config
+```
+echo "Create .kube directory"
+mkdir -p $HOME/.kube
+# Copy the kube config from /etc/rancher/k3s/k3s.yaml to $HOME/.kube/config
+sudo cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+# Change ownership of the config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+# Update KUBECONFIG environment variable
+export KUBECONFIG=$HOME/.kube/config
+```
+
 ## 4. Download Opni
 
 ```bash
