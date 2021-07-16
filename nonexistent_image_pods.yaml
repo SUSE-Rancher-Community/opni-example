@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-job-nonexistent-image
+  labels:
+    is-opni-demo: "true"
+spec:
+  completions: 10
+  parallelism: 10
+  template:
+    spec:
+      containers:
+        - name: test
+          image: this-image-does-not-exist
+          command:
+          - /test
+          imagePullPolicy: Always
+      restartPolicy: Never
