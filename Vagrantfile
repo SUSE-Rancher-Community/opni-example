@@ -7,15 +7,17 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
   end
   config.vm.provision "shell", inline: <<-SHELL
-    zypper update
+    zypper --non-interactive update
     zypper --non-interactive in command-not-found nano tmux 
-    zypper --non-interactive in gnu-netcat curl
+    # zypper --non-interactive in gnu-netcat curl
     zypper --non-interactive in -t pattern apparmor
+    zypper --non-interactive in git-core
     echo "Installing K3s"
     curl -sfL https://get.k3s.io | sh -
-    mkdir -p $HOME/.kube
+    
+    mkdir -p $HOME/.kube/config
     sudo cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
-    sudo chown $(id -u):$(id -g) $HOME/.kube/config
-    export KUBECONFIG=$HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config/k3s.yaml
+    export KUBECONFIG=$HOME/.kube/config/k3s.yaml
   SHELL
 end

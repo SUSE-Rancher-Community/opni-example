@@ -56,6 +56,20 @@ Change permissions with this command:
 sudo chmod +x /usr/local/bin/opnictl
 ```
 
+### Linux
+
+These commands will download Opni:
+
+```bash
+sudo curl -s -o /usr/local/bin/opnictl -fsSL https://github.com/rancher/opni/releases/download/v0.1.2/opnictl_linux-amd64
+```
+
+Change permissions with this command:
+
+```bash
+sudo chmod +x /usr/local/bin/opnictl
+```
+
 ### Windows
 
 Download [Opni](https://github.com/rancher/opni/releases/download/v0.1.2/opnictl_windows-amd64.exe) and add it to your `PATH`.
@@ -73,22 +87,30 @@ opnictl install
 This command will create the demo but it will take a few minutes to run:
 
 ```bash
-opnictl create demo --deploy-gpu-services=false --deploy-helm-controller=true --deploy-nvidia-plugin=false --deploy-rancher-logging=true --timeout 10m
+opnictl create demo --deploy-gpu-services=false --deploy-helm-controller=true --deploy-nvidia-plugin=false --deploy-rancher-logging=true --timeout 15m
 ```
 
 You will get an output similar but not exact to this:
 
 ```bash
- ✓ [Done] Waiting for deployment drain-service to become ready                         
- ✓ [Done] Waiting for deployment nulog-inference-service-control-plane to become ready 
- ✓ [Done] Waiting for prerequisite deployment opendistro-es-kibana to become ready     
- ✓ [Done] Waiting for prerequisite statefulset opendistro-es-master to become ready    
- ✓ [Done] Waiting for job helm-install-nats to complete                                
- ✓ [Done] Waiting for prerequisite statefulset opendistro-es-data to become ready      
- ✓ [Done] Waiting for prerequisite deployment opendistro-es-client to become ready     
- ✓ [Done] Waiting for job helm-install-rancher-logging-crd to complete                 
- ✓ [Done] Waiting for job helm-install-opendistro-es to complete                       
- ✓ [Done] Waiting for job helm-install-rancher-logging to complete 
+ ✗ Done.                                                                                
+ ✓ [Done] Waiting for job helm-install-rancher-logging-crd to complete                  
+ ✓ [Done] Waiting for job helm-install-rancher-logging to complete                      
+ ✓ [Done] Waiting for an install job to start for minio                                 
+ ✓ [Done] Waiting for job helm-install-nats (Job.batch "helm-install-nats" not found)   
+ ✓ [Done] Waiting for an install job to start for opendistro-es                         
+ ✓ [Done] Waiting for job helm-install-minio to complete                                
+ ✓ [Done] Waiting for job helm-install-nats to complete                                 
+ ✓ [Done] Waiting for deployment drain-service to become ready                          
+ ✓ [Done] Waiting for deployment nulog-inference-service-control-plane to become ready  
+ ✓ [Done] Waiting for deployment preprocessing-service to become ready                  
+ ✓ [Done] Waiting for deployment payload-receiver-service to become ready               
+ ✓ [Done] Waiting for job helm-install-minio (Job.batch "helm-install-minio" not found) 
+ ✓ [Done] Waiting for job helm-install-opendistro-es to complete                        
+ ✓ [Done] Waiting for prerequisite statefulset opendistro-es-master to become ready     
+ ✓ [Done] Waiting for prerequisite deployment opendistro-es-kibana to become ready      
+ ✓ [Done] Waiting for prerequisite statefulset opendistro-es-data to become ready       
+ ✓ [Done] Waiting for prerequisite deployment opendistro-es-client to become ready  
 ```
 
 ## 8. Get NodePort
